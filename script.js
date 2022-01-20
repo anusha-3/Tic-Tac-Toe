@@ -6,21 +6,18 @@ let turn = PLAYER_X;
 const boardState = Array(tiles.length);
 boardState.fill(null);
 
-//Elements
 const strike = document.getElementById("strike");
 const gameOverArea = document.getElementById("game-over-area");
 const gameOverText = document.getElementById("game-over-text");
 const playAgain = document.getElementById("play-again");
 playAgain.addEventListener("click", startNewGame);
 
-//Sounds
-const gameOverSound = new Audio("sounds/game_over.wav");
-const clickSound = new Audio("sounds/click.wav");
+const gameOverSound = new Audio("./sounds/game-draw.mp3");
+const clickSound = new Audio("./sounds/click.wav");
 
 tiles.forEach((tile) => tile.addEventListener("click", tileClick));
 
 function setHoverText() {
-  //remove all hover text
   tiles.forEach((tile) => {
     tile.classList.remove("x-hover");
     tile.classList.remove("o-hover");
@@ -64,9 +61,7 @@ function tileClick(event) {
 }
 
 function checkWinner() {
-  //Check for a winner
   for (const winningCombination of winningCombinations) {
-    //Object Destructuring
     const { combo, strikeClass } = winningCombination;
     const tileValue1 = boardState[combo[0] - 1];
     const tileValue2 = boardState[combo[1] - 1];
@@ -83,7 +78,6 @@ function checkWinner() {
     }
   }
 
-  //Check for a draw
   const allTileFilledIn = boardState.every((tile) => tile !== null);
   if (allTileFilledIn) {
     gameOverScreen(null);
@@ -110,15 +104,12 @@ function startNewGame() {
 }
 
 const winningCombinations = [
-  //rows
   { combo: [1, 2, 3], strikeClass: "strike-row-1" },
   { combo: [4, 5, 6], strikeClass: "strike-row-2" },
   { combo: [7, 8, 9], strikeClass: "strike-row-3" },
-  //columns
   { combo: [1, 4, 7], strikeClass: "strike-column-1" },
   { combo: [2, 5, 8], strikeClass: "strike-column-2" },
   { combo: [3, 6, 9], strikeClass: "strike-column-3" },
-  //diagonals
   { combo: [1, 5, 9], strikeClass: "strike-diagonal-1" },
   { combo: [3, 5, 7], strikeClass: "strike-diagonal-2" },
 ];

@@ -2,8 +2,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
-  color: greenyellow;
+  background-color: rgba(128, 128, 128, 0.247);
+  color: rgb(40, 171, 247);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #board {
@@ -82,6 +83,7 @@ body {
 
 h1 {
   color: currentColor;
+  font-size: 30px;
 }
 
 #game-over-area {
@@ -104,6 +106,9 @@ button {
   border: currentColor 1px solid;
   padding: 10px;
   font-size: 1.5em;
+}
+button:hover {
+  transform: translateY(-0.2rem);
 }
 
 .hidden {
